@@ -1,12 +1,12 @@
 github_users:
-  - torvalds
-  - alshedivat
+  - pvsnp9
 
 github_repos:
-  - alshedivat/al-folio
-  - twbs/bootstrap
-  - jekyll/jekyll
-  - jquery/jquery
-  - FortAwesome/Font-Awesome
-  - jpswalsh/academicons
-  - mathjax/MathJax
+  - pvsnp9/RIMD-Deep-Learning-Model-for-Clinical-Prediction
+  - pvsnp9/credit-risk-modelling
+  - pvsnp9/audio_classification_using_deep_learning
+  - pvsnp9/lstm-clinical-mortality-prediction
+  - pvsnp9/Feature-Enginering
+  - pvsnp9/building-transformer-nmt
+  - pvsnp9/Feature-Selection
+
