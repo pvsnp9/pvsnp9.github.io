@@ -1,4 +1,411 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://pvsnp9.github.io/feed.xml" rel="self" type="application/atom+xml"/><link href="https://pvsnp9.github.io/" rel="alternate" type="text/html" hreflang="en"/><updated>2024-01-01T01:03:05+00:00</updated><id>https://pvsnp9.github.io/feed.xml</id><title type="html">Tsuyog Basnet</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. </subtitle><entry><title type="html">Go</title><link href="https://pvsnp9.github.io/blog/2023/go-cheatsheet/" rel="alternate" type="text/html" title="Go"/><published>2023-12-13T00:00:00+00:00</published><updated>2023-12-13T00:00:00+00:00</updated><id>https://pvsnp9.github.io/blog/2023/go-cheatsheet</id><content type="html" xml:base="https://pvsnp9.github.io/blog/2023/go-cheatsheet/"><![CDATA[<p>Go, also known as Golang, is a programming language developed by Google with a focus on simplicity, efficiency, and concurrency. Its clean syntax and static typing contribute to code readability and early error detection. Go promotes concurrent programming through lightweight threads called goroutines and channels for communication between them. The language features automatic garbage collection, reducing the burden on developers for memory management. Go’s standard library is robust, covering a wide range of tasks, and the language is cross-platform, allowing for seamless deployment across different operating systems. With a compiled nature, Go produces a single binary executable, simplifying distribution.</p> <h2 id="basics">Basics</h2> <p>create a simple program and run.</p> <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">main</span>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://pvsnp9.github.io/feed.xml" rel="self" type="application/atom+xml"/><link href="https://pvsnp9.github.io/" rel="alternate" type="text/html" hreflang="en"/><updated>2024-01-01T18:21:06+00:00</updated><id>https://pvsnp9.github.io/feed.xml</id><title type="html">Tsuyog Basnet</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. </subtitle><entry><title type="html">Protobuf</title><link href="https://pvsnp9.github.io/blog/2023/protobbuf/" rel="alternate" type="text/html" title="Protobuf"/><published>2023-12-31T00:00:00+00:00</published><updated>2023-12-31T00:00:00+00:00</updated><id>https://pvsnp9.github.io/blog/2023/protobbuf</id><content type="html" xml:base="https://pvsnp9.github.io/blog/2023/protobbuf/"><![CDATA[<h2 id="introduction">Introduction</h2> <p>Protocol Buffers (protobuf) is a language-agnostic data <code class="language-plaintext highlighter-rouge">byte</code> serialization format developed by Google. It uses a simple language to define data structures in <code class="language-plaintext highlighter-rouge">.proto</code> files. Protobuf supports various data types, including integers, floating-point numbers, booleans, strings, bytes, and custom message types. Messages, the fundamental building blocks, are collections of key-value pairs, akin to objects or structs in programming languages. Additionally, protobuf introduces advanced features such as enumerations, repeated fields, and maps. The format is designed for efficiency, producing compact binary representations of data. Code generators then transform these definitions into source code in different programming languages, allowing seamless data exchange between applications written in diverse languages while providing support for backward and forward compatibility. In addition , gRPC is an open-source RPC framework developed by Google that facilitates efficient, language-agnostic communication between distributed systems using Protocol Buffers</p> <p>In this blog, we’ll delve into the fundamentals of Protocol Buffers and explore the seamless integration of gRPC in the Go programming language, uncovering the power of these tools in enhancing communication and interoperability in modern software architectures.</p> <p>JSON</p> <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Delta"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Special"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"division"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Air"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div> <p>Protobuf</p> <div class="language-protobuf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">syntax</span><span class="o">:</span> <span class="s">"proto3"</span><span class="p">;</span>
+<span class="k">option</span> <span class="na">go_package</span> <span class="o">=</span><span class="s">"{package_name}/pkg/pb/protogen"</span><span class="p">;</span>
+
+<span class="kn">package</span> <span class="nn">basic</span><span class="p">;</span>
+
+<span class="kd">message</span> <span class="nc">Officer</span> <span class="p">{</span>
+    <span class="kt">uint32</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">name</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">int</span> <span class="na">rank</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">division</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div> <p>The <code class="language-plaintext highlighter-rouge">option go_package</code> tells the go package name and detination for proto generated source code.</p> <p>Sidenote: <code class="language-plaintext highlighter-rouge">Marshal</code> refers to the process of converting a data structure into its serialized representation, often in the form of a byte slice or a string. This operation is commonly used for data interchange or storage. Conversely, <code class="language-plaintext highlighter-rouge">Unmarshal</code> involves taking the serialized data and reconstructing the original data structure. These operations are frequently used in encoding and decoding data, such as converting between Go data structures and formats like JSON, XML, or Protocol Buffers. The encoding/json and other related packages in Go provide functions like json.Marshal and json.Unmarshal to perform these operations for JSON encoding and decoding, while similar functions exist for other formats and libraries.</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Note: Marshall is serialization and Unmarshall is deserilization. 
+</code></pre></div></div> <p>Protobuf is designed with schema evolution in mind to avoid braeaking changes. It needs to follow a certain rules.</p> <p>Protobuf styling Guide<a href="https://github.com/uber/prototool/blob/dev/style/README.md#spacing"> (Uber) </a></p> <h2 id="makefile">Makefile</h2> <div class="language-makefile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">GO_MODULE</span> <span class="o">:=</span> github.com/pvsnp9/example
+
+
+<span class="nl">.PHONY</span><span class="o">:</span> <span class="nf">tidy</span>
+<span class="nl">tidy</span><span class="o">:</span>
+	go mod tidy
+
+
+<span class="nl">.PHONY</span><span class="o">:</span> <span class="nf">clean</span>
+<span class="nl">clean</span><span class="o">:</span>
+	<span class="p">@</span><span class="k">if</span> <span class="o">[</span> <span class="nt">-d</span> <span class="s2">"protogen"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then </span><span class="nb">rm</span> <span class="nt">-rf</span> protogen<span class="p">;</span> <span class="k">fi</span>
+
+
+<span class="nl">.PHONY</span><span class="o">:</span> <span class="nf">proto</span>
+<span class="nl">proto</span><span class="o">:</span>
+	protoc <span class="nt">--go_opt</span><span class="o">=</span><span class="nv">module</span><span class="o">=</span><span class="p">${</span>GO_MODULE<span class="p">}</span> <span class="nt">--go_out</span><span class="o">=</span><span class="nb">.</span> ./pkg/pb/<span class="k">**</span>/<span class="k">*</span>.proto
+
+
+<span class="nl">.PHONY</span><span class="o">:</span> <span class="nf">build</span>
+<span class="nl">build</span><span class="o">:</span> <span class="nf">clean protoc tidy</span>
+
+
+<span class="nl">.PHONY</span><span class="o">:</span> <span class="nf">run</span>
+<span class="nl">run</span><span class="o">:</span>
+	go run cmd/main.go
+
+
+</code></pre></div></div> <p>When you use the Protocol Buffers compiler (<code class="language-plaintext highlighter-rouge">protoc</code>) to generate code for a proto file, it typically produces files with certain naming conventions based on the target language and the type of service definition. Here are the meanings of the files you mentioned:</p> <ol> <li><strong><code class="language-plaintext highlighter-rouge">*.pb.go</code> Files:</strong> <ul> <li>These are Go source files generated by the <code class="language-plaintext highlighter-rouge">protoc</code> compiler when targeting Go (Golang).</li> <li>The <code class="language-plaintext highlighter-rouge">*.pb.go</code> files contain the generated code for your protocol buffer messages, allowing you to easily serialize and deserialize data structures defined in your proto file.</li> <li>The file name is typically derived from your original proto file. For example, if your proto file is named <code class="language-plaintext highlighter-rouge">example.proto</code>, the generated Go file might be named <code class="language-plaintext highlighter-rouge">example.pb.go</code>.</li> </ul> </li> <li><strong><code class="language-plaintext highlighter-rouge">*_grpc.pb.go</code> Files:</strong> <ul> <li>When you define a gRPC service in your proto file, the <code class="language-plaintext highlighter-rouge">protoc</code> compiler generates additional code for the service implementation and client in addition to the message types.</li> <li>The <code class="language-plaintext highlighter-rouge">*_grpc.pb.go</code> file contains the gRPC service interface and the server-side implementation code.</li> <li>The naming convention usually involves adding <code class="language-plaintext highlighter-rouge">_grpc.pb.go</code> to the base name of your proto file. For example, if your proto file is named <code class="language-plaintext highlighter-rouge">example.proto</code>, the generated gRPC file might be named <code class="language-plaintext highlighter-rouge">example_grpc.pb.go</code>.</li> </ul> </li> </ol> <p>Here’s a quick example to illustrate the naming conventions:</p> <ul> <li>Original Proto File: <code class="language-plaintext highlighter-rouge">example.proto</code></li> <li>Generated Go File for Messages: <code class="language-plaintext highlighter-rouge">example.pb.go</code></li> <li>Generated Go File for gRPC Service: <code class="language-plaintext highlighter-rouge">example_grpc.pb.go</code></li> </ul> <p>These files, once generated, allow you to work with your protocol buffer messages and gRPC service in your Go application. Remember that the actual names may depend on your specific proto file and project structure.</p> <h2 id="repeated-fields-enumeration-comments">Repeated fields, enumeration, Comments</h2> <p>Repeated : A filed with one or zero values like a array/list. The default value is empty.</p> <div class="language-protobuf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">message</span> <span class="nc">Person</span> <span class="p">{</span>
+    <span class="k">repeated</span> <span class="n">int</span> <span class="n">itemId</span>
+<span class="p">}</span>
+</code></pre></div></div> <div class="language-protobuf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">enum</span> <span class="n">Gender</span> <span class="p">{</span>
+    <span class="na">GENDER_UNSPECIFIED</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="na">GENDER_MALE</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="na">GENDER_FEMALE</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <p>How to use them:</p> <div class="language-protobuf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">message</span> <span class="nc">User</span> <span class="p">{</span>
+  <span class="kt">uint32</span> <span class="na">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">username</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="kt">bool</span> <span class="na">is_active</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="k">repeated</span> <span class="kt">string</span> <span class="na">emails</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="n">Gender</span> <span class="na">gender</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <h2 id="nested-message-type">Nested message type</h2> <div class="language-protobuf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Define another message called "Address"</span>
+<span class="kd">message</span> <span class="nc">Address</span> <span class="p">{</span>
+  <span class="c1">// Define fields for the Address message</span>
+  <span class="kt">string</span> <span class="na">street</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">city</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">country</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">postal_code</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="n">Coordinate</span> <span class="na">coordinate</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span> <span class="c1">//field to access the cordindate </span>
+
+  <span class="c1">// nested</span>
+  <span class="kd">message</span> <span class="nc">Coordinate</span> <span class="p">{</span>
+      <span class="kt">double</span> <span class="na">lattitude</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="kt">double</span> <span class="na">longitude</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div> <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">//Using it </span>
+<span class="n">address</span> <span class="o">:=</span> <span class="n">basic</span><span class="o">.</span><span class="n">Address</span><span class="p">{</span>
+    <span class="n">Street</span><span class="o">:</span>     <span class="s">"Street"</span><span class="p">,</span>
+    <span class="n">City</span><span class="o">:</span>       <span class="s">"City"</span><span class="p">,</span>
+    <span class="n">PostalCode</span><span class="o">:</span> <span class="s">"PSTCD3"</span><span class="p">,</span>
+    <span class="n">Coordinate</span><span class="o">:</span> <span class="o">&amp;</span><span class="n">basic</span><span class="o">.</span><span class="n">Address_Coordinate</span><span class="p">{</span>
+        <span class="n">Lattitude</span><span class="o">:</span> <span class="m">40.705152254</span><span class="p">,</span>
+        <span class="n">Longitude</span><span class="o">:</span> <span class="o">-</span><span class="m">74.52515425</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">}</span>
+
+</code></pre></div></div> <p>##ProtoJSON</p> <p>a tool to convert JSON to protobuf and vice-versa.</p> <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">import</span> <span class="p">(</span>
+	<span class="s">"log"</span>
+	<span class="s">"github.com/pvsnp9/example/pkg/protogen/basic"</span>
+	<span class="s">"google.golang.org/protobuf/encoding/protojson"</span>
+<span class="p">)</span>
+
+<span class="k">func</span> <span class="n">ProtoToJsonUser</span><span class="p">()</span> <span class="p">{</span>
+	<span class="n">u</span> <span class="o">:=</span> <span class="n">basic</span><span class="o">.</span><span class="n">User</span><span class="p">{</span>
+		<span class="n">Id</span><span class="o">:</span>       <span class="m">2</span><span class="p">,</span>
+		<span class="n">Username</span><span class="o">:</span> <span class="s">"Bravo"</span><span class="p">,</span>
+		<span class="n">IsActive</span><span class="o">:</span> <span class="no">true</span><span class="p">,</span>
+		<span class="n">Password</span><span class="o">:</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">(</span><span class="s">"adfasfas"</span><span class="p">),</span>
+		<span class="n">Emails</span><span class="o">:</span>   <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"test@mai.com"</span><span class="p">,</span> <span class="s">"test2@mail.com"</span><span class="p">},</span>
+		<span class="n">Gender</span><span class="o">:</span>   <span class="n">basic</span><span class="o">.</span><span class="n">Gender_GENDER_MALE</span><span class="p">,</span>
+	<span class="p">}</span>
+	<span class="n">jsonBytes</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">protojson</span><span class="o">.</span><span class="n">Marshal</span><span class="p">(</span><span class="o">&amp;</span><span class="n">u</span><span class="p">)</span>
+	<span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+		<span class="n">log</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"error"</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="n">log</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="kt">string</span><span class="p">(</span><span class="n">jsonBytes</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="n">JsonToProto</span><span class="p">()</span> <span class="p">{</span>
+	<span class="n">json</span> <span class="o">:=</span> <span class="s">`{
+		"id": 5,
+		"username":"delta",
+		"is_active":true,
+		"password":"YWRmYXNmYXM=",
+		"emails":["test@mai.com", "test2@mail.com"],
+		"gender":"GENDER_MALE"
+	}`</span>
+
+	<span class="k">var</span> <span class="n">user</span> <span class="n">basic</span><span class="o">.</span><span class="n">User</span>
+	<span class="n">err</span> <span class="o">:=</span> <span class="n">protojson</span><span class="o">.</span><span class="n">Unmarshal</span><span class="p">([]</span><span class="kt">byte</span><span class="p">(</span><span class="n">json</span><span class="p">),</span> <span class="o">&amp;</span><span class="n">user</span><span class="p">)</span>
+	<span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+		<span class="n">log</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"Err:"</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="n">log</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="o">&amp;</span><span class="n">user</span><span class="p">)</span>
+<span class="p">}</span>
+
+
+</code></pre></div></div> <h2 id="importing-protos">Importing Protos</h2> <div class="language-protobuf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">syntax</span> <span class="o">=</span> <span class="s">"proto3"</span><span class="p">;</span>
+
+<span class="k">import</span> <span class="s">"pkg/pb/basic/user.proto"</span><span class="p">;</span>
+<span class="c1">// package_name/yoo=ur_directory</span>
+
+<span class="kn">package</span> <span class="nn">basic</span><span class="p">;</span>
+
+<span class="k">option</span> <span class="na">go_package</span> <span class="o">=</span> <span class="s">"github.com/pvsnp9/example/pkg/protogen/basic"</span><span class="p">;</span>
+<span class="c1">// package_name/generated file destiantion</span>
+
+<span class="kd">message</span> <span class="nc">UserGroup</span> <span class="p">{</span>
+    <span class="kt">int32</span> <span class="na">group_id</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">[</span><span class="na">json_name</span><span class="o">=</span><span class="s">"group_id"</span><span class="p">];</span>
+    <span class="kt">string</span> <span class="na">group_name</span> <span class="o">=</span> <span class="mi">2</span> <span class="p">[</span><span class="na">json_name</span><span class="o">=</span><span class="s">"group_name"</span><span class="p">];</span>
+    <span class="k">repeated</span> <span class="kt">string</span> <span class="na">roles</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="k">repeated</span> <span class="n">User</span> <span class="na">user</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="na">description</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div> <p>Importing non-local protos.</p> <div class="language-protobuf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">syntax</span> <span class="o">=</span> <span class="s">"proto3"</span><span class="p">;</span>
+
+<span class="k">import</span> <span class="s">"pkg/pb/basic/application.proto"</span><span class="p">;</span>
+<span class="k">import</span> <span class="s">"pkg/pb/dummy/application.proto"</span><span class="p">;</span>
+
+<span class="kn">package</span> <span class="nn">jobsearch</span><span class="p">;</span>
+
+<span class="k">option</span> <span class="na">go_package</span> <span class="o">=</span> <span class="s">"github.com/pvsnp9/example/pkg/protogen/jobsearch"</span><span class="p">;</span>
+
+<span class="kd">message</span> <span class="nc">JobCandidate</span> <span class="p">{</span>
+    <span class="kt">uint32</span> <span class="na">job_candidate_id</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">[</span><span class="na">json_name</span> <span class="o">=</span> <span class="s">"job_candidate_id"</span><span class="p">];</span>
+    <span class="n">dummy.Application</span> <span class="na">application</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="kd">message</span> <span class="nc">JobSoftware</span> <span class="p">{</span>
+    <span class="kt">uint32</span> <span class="na">job_software_id</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">[</span><span class="na">json_name</span> <span class="o">=</span> <span class="s">"job_software_id"</span><span class="p">];</span>
+    <span class="n">basic.Application</span> <span class="na">application</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="p">}</span>
+
+</code></pre></div></div> <h2 id="any">Any</h2> <div class="language-protobuf highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">message</span> <span class="nc">Papermail</span><span class="p">{</span>
+    <span class="kt">string</span> <span class="na">paper_mail_address</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">[</span><span class="na">json_name</span> <span class="o">=</span> <span class="s">"paper_mail_address"</span><span class="p">];</span>
+  <span class="p">}</span>
+
+  <span class="kd">message</span> <span class="nc">SocialMedia</span><span class="p">{</span>
+    <span class="kt">string</span> <span class="na">social_media_platform</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">[</span><span class="na">json_name</span> <span class="o">=</span> <span class="s">"social_media_platform"</span><span class="p">];</span>
+    <span class="kt">string</span> <span class="na">social_media_username</span> <span class="o">=</span> <span class="mi">2</span> <span class="p">[</span><span class="na">json_name</span> <span class="o">=</span> <span class="s">"social_media_username"</span><span class="p">];</span>
+  <span class="p">}</span>
+
+  <span class="kd">message</span> <span class="nc">InstantMessaging</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="na">instant_messaging_product</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">[</span><span class="na">json_name</span> <span class="o">=</span> <span class="s">"instant_messaging_product"</span><span class="p">];</span>
+    <span class="kt">string</span> <span class="na">instant_messaging_username</span> <span class="o">=</span> <span class="mi">2</span> <span class="p">[</span><span class="na">json_name</span> <span class="o">=</span> <span class="s">"instant_messaging_username"</span><span class="p">];</span>
+  <span class="p">}</span>
+</code></pre></div></div> <div class="language-protobuf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//usage </span>
+<span class="kd">message</span> <span class="nc">User</span> <span class="p">{</span>
+     <span class="n">google.protobuf.Any</span> <span class="na">communication_channel</span> <span class="o">=</span> <span class="mi">19</span> <span class="p">[</span><span class="na">json_name</span> <span class="o">=</span> <span class="s">"communication_channel"</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div></div> <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">//examples </span>
+<span class="k">func</span> <span class="n">randomCommunicationChanel</span><span class="p">()</span> <span class="n">anypb</span><span class="o">.</span><span class="n">Any</span> <span class="p">{</span>
+	<span class="n">paper_mail</span> <span class="o">:=</span> <span class="n">basic</span><span class="o">.</span><span class="n">Papermail</span><span class="p">{</span>
+		<span class="n">PaperMailAddress</span><span class="o">:</span> <span class="s">"Mailing address !!"</span><span class="p">,</span>
+	<span class="p">}</span>
+	<span class="n">social_media</span> <span class="o">:=</span> <span class="n">basic</span><span class="o">.</span><span class="n">SocialMedia</span><span class="p">{</span>
+		<span class="n">SocialMediaPlatform</span><span class="o">:</span> <span class="s">"insta"</span><span class="p">,</span>
+		<span class="n">SocialMediaUsername</span><span class="o">:</span> <span class="s">"rango"</span><span class="p">,</span>
+	<span class="p">}</span>
+
+	<span class="n">instant_messaging</span> <span class="o">:=</span> <span class="n">basic</span><span class="o">.</span><span class="n">InstantMessaging</span><span class="p">{</span>
+		<span class="n">InstantMessagingProduct</span><span class="o">:</span>  <span class="s">"whatsapp"</span><span class="p">,</span>
+		<span class="n">InstantMessagingUsername</span><span class="o">:</span> <span class="s">"Rango"</span><span class="p">,</span>
+	<span class="p">}</span>
+
+	<span class="k">var</span> <span class="n">any</span> <span class="n">anypb</span><span class="o">.</span><span class="n">Any</span>
+
+	<span class="k">switch</span> <span class="n">r</span> <span class="o">:=</span> <span class="n">rand</span><span class="o">.</span><span class="n">Intn</span><span class="p">(</span><span class="m">20</span><span class="p">)</span> <span class="o">%</span> <span class="m">3</span><span class="p">;</span> <span class="n">r</span> <span class="p">{</span>
+	<span class="k">case</span> <span class="m">0</span><span class="o">:</span>
+		<span class="n">anypb</span><span class="o">.</span><span class="n">MarshalFrom</span><span class="p">(</span><span class="o">&amp;</span><span class="n">any</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">paper_mail</span><span class="p">,</span> <span class="n">proto</span><span class="o">.</span><span class="n">MarshalOptions</span><span class="p">{})</span>
+	<span class="k">case</span> <span class="m">1</span><span class="o">:</span>
+		<span class="n">anypb</span><span class="o">.</span><span class="n">MarshalFrom</span><span class="p">(</span><span class="o">&amp;</span><span class="n">any</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">social_media</span><span class="p">,</span> <span class="n">proto</span><span class="o">.</span><span class="n">MarshalOptions</span><span class="p">{})</span>
+	<span class="k">default</span><span class="o">:</span>
+		<span class="n">anypb</span><span class="o">.</span><span class="n">MarshalFrom</span><span class="p">(</span><span class="o">&amp;</span><span class="n">any</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">instant_messaging</span><span class="p">,</span> <span class="n">proto</span><span class="o">.</span><span class="n">MarshalOptions</span><span class="p">{})</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="n">any</span>
+<span class="p">}</span>
+
+<span class="c">// if we know which message type it is.</span>
+<span class="k">func</span> <span class="n">BasicUnMarshallAnyToKnown</span><span class="p">()</span> <span class="p">{</span>
+	<span class="n">sm</span> <span class="o">:=</span> <span class="n">basic</span><span class="o">.</span><span class="n">SocialMedia</span><span class="p">{</span>
+		<span class="n">SocialMediaPlatform</span><span class="o">:</span> <span class="s">"Fb"</span><span class="p">,</span>
+		<span class="n">SocialMediaUsername</span><span class="o">:</span> <span class="s">"tt"</span><span class="p">,</span>
+	<span class="p">}</span>
+	<span class="k">var</span> <span class="n">a</span> <span class="n">anypb</span><span class="o">.</span><span class="n">Any</span>
+	<span class="n">anypb</span><span class="o">.</span><span class="n">MarshalFrom</span><span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">sm</span><span class="p">,</span> <span class="n">proto</span><span class="o">.</span><span class="n">MarshalOptions</span><span class="p">{})</span>
+	<span class="n">smedia</span> <span class="o">:=</span> <span class="n">basic</span><span class="o">.</span><span class="n">SocialMedia</span><span class="p">{}</span>
+
+	<span class="k">if</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">a</span><span class="o">.</span><span class="n">UnmarshalTo</span><span class="p">(</span><span class="o">&amp;</span><span class="n">smedia</span><span class="p">);</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+		<span class="k">return</span>
+	<span class="p">}</span>
+	<span class="n">json</span><span class="p">,</span> <span class="n">_</span> <span class="o">:=</span> <span class="n">protojson</span><span class="o">.</span><span class="n">Marshal</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sm</span><span class="p">)</span>
+	<span class="n">log</span><span class="o">.</span><span class="n">Print</span><span class="p">(</span><span class="kt">string</span><span class="p">(</span><span class="n">json</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="c">//if we do not know message type</span>
+<span class="k">func</span> <span class="n">BasicUnMarshallAnyToUnknown</span><span class="p">()</span> <span class="p">{</span>
+	<span class="n">anon</span> <span class="o">:=</span> <span class="n">randomCommunicationChanel</span><span class="p">()</span>
+
+	<span class="k">var</span> <span class="n">anonUnmarshalled</span> <span class="n">protoreflect</span><span class="o">.</span><span class="n">ProtoMessage</span>
+
+	<span class="n">anonUnmarshalled</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">anon</span><span class="o">.</span><span class="n">UnmarshalNew</span><span class="p">()</span>
+	<span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+		<span class="k">return</span>
+	<span class="p">}</span>
+	<span class="n">log</span><span class="o">.</span><span class="n">Print</span><span class="p">(</span><span class="s">"Unmarshall as a "</span><span class="p">,</span> <span class="n">anonUnmarshalled</span><span class="o">.</span><span class="n">ProtoReflect</span><span class="p">()</span><span class="o">.</span><span class="n">Descriptor</span><span class="p">()</span><span class="o">.</span><span class="n">Name</span><span class="p">())</span>
+	<span class="n">json</span><span class="p">,</span> <span class="n">_</span> <span class="o">:=</span> <span class="n">protojson</span><span class="o">.</span><span class="n">Marshal</span><span class="p">(</span><span class="n">anonUnmarshalled</span><span class="p">)</span>
+	<span class="n">log</span><span class="o">.</span><span class="n">Print</span><span class="p">(</span><span class="kt">string</span><span class="p">(</span><span class="n">json</span><span class="p">))</span>
+<span class="p">}</span>
+
+
+</code></pre></div></div> <h2 id="oneof">Oneof</h2> <p>Allow only X, Y, or custom_filed. It uses $oneof$ keyword to define.</p> <div class="language-protobuf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">message</span> <span class="nc">User</span> <span class="p">{</span>
+    <span class="k">oneof</span> <span class="n">electronic_comm_channel</span> <span class="p">{</span>
+        <span class="n">SocialMedia</span> <span class="na">social_media</span> <span class="o">=</span> <span class="mi">20</span> <span class="p">[</span><span class="na">json_name</span> <span class="o">=</span> <span class="s">"social_media"</span><span class="p">];</span>
+        <span class="n">InstantMessaging</span> <span class="na">instant_messaging</span> <span class="o">=</span> <span class="mi">21</span> <span class="p">[</span><span class="na">json_name</span> <span class="o">=</span> <span class="s">"instant_messaging"</span><span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div> <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// oneof example</span>
+<span class="k">func</span> <span class="n">BasicOneof</span><span class="p">()</span> <span class="p">{</span>
+	<span class="n">sm</span> <span class="o">:=</span> <span class="n">basic</span><span class="o">.</span><span class="n">SocialMedia</span><span class="p">{</span>
+		<span class="n">SocialMediaPlatform</span><span class="o">:</span> <span class="s">"X"</span><span class="p">,</span>
+		<span class="n">SocialMediaUsername</span><span class="o">:</span> <span class="s">"Charlie"</span><span class="p">,</span>
+	<span class="p">}</span>
+
+	<span class="n">ecom_chan</span> <span class="o">:=</span> <span class="n">basic</span><span class="o">.</span><span class="n">User_SocialMedia</span><span class="p">{</span>
+		<span class="n">SocialMedia</span><span class="o">:</span> <span class="o">&amp;</span><span class="n">sm</span><span class="p">,</span>
+	<span class="p">}</span>
+
+	<span class="n">user</span> <span class="o">:=</span> <span class="n">basic</span><span class="o">.</span><span class="n">User</span><span class="p">{</span>
+		<span class="n">Id</span><span class="o">:</span>                    <span class="m">11</span><span class="p">,</span>
+		<span class="n">Username</span><span class="o">:</span>              <span class="s">"LaLa"</span><span class="p">,</span>
+		<span class="n">IsActive</span><span class="o">:</span>              <span class="no">true</span><span class="p">,</span>
+		<span class="n">Password</span><span class="o">:</span>              <span class="p">[]</span><span class="kt">byte</span><span class="p">(</span><span class="s">"Rango"</span><span class="p">),</span>
+		<span class="n">Gender</span><span class="o">:</span>                <span class="n">basic</span><span class="o">.</span><span class="n">Gender_GENDER_MALE</span><span class="p">,</span>
+		<span class="n">Emails</span><span class="o">:</span>                <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"test@mai.com"</span><span class="p">,</span> <span class="s">"test2@mail.com"</span><span class="p">},</span>
+		<span class="n">ElectronicCommChannel</span><span class="o">:</span> <span class="o">&amp;</span><span class="n">ecom_chan</span><span class="p">,</span>
+	<span class="p">}</span>
+	<span class="n">json</span><span class="p">,</span> <span class="n">_</span> <span class="o">:=</span> <span class="n">protojson</span><span class="o">.</span><span class="n">Marshal</span><span class="p">(</span><span class="o">&amp;</span><span class="n">user</span><span class="p">)</span>
+	<span class="n">log</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="kt">string</span><span class="p">(</span><span class="n">json</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div></div> <h2 id="map">Map</h2> <p>Its a key-value data structure. Protobuf also supports map data structure.</p> <div class="language-protobuf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">message</span> <span class="nc">User</span> <span class="p">{</span>
+    <span class="n">map</span> <span class="o">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">uint32</span><span class="err">&gt;</span> <span class="na">skill_rating</span> <span class="o">=</span> <span class="mi">22</span> <span class="p">[</span><span class="na">json_name</span><span class="o">=</span><span class="s">"skill_rating"</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div></div> <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">skill_rating</span> <span class="o">:=</span> <span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">uint32</span><span class="p">{</span><span class="s">"swim"</span><span class="o">:</span> <span class="m">8</span><span class="p">,</span> <span class="s">"fly"</span><span class="o">:</span> <span class="m">9</span><span class="p">,</span> <span class="s">"drive"</span><span class="o">:</span> <span class="m">10</span><span class="p">}</span>
+<span class="n">user</span> <span class="o">:=</span> <span class="n">User</span><span class="p">{</span>
+    <span class="n">SkillRating</span><span class="o">:</span> <span class="n">skill_rating</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div></div> <h2 id="readwrite-to-disk">Read/Write to Disk</h2> <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+<span class="c">// write to file</span>
+<span class="k">func</span> <span class="n">WriteUserToFile</span><span class="p">(</span><span class="n">user</span> <span class="n">proto</span><span class="o">.</span><span class="n">Message</span><span class="p">,</span> <span class="n">filename</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">bytes</span><span class="p">,</span> <span class="n">_</span> <span class="o">:=</span> <span class="n">proto</span><span class="o">.</span><span class="n">Marshal</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+	<span class="k">if</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">ioutil</span><span class="o">.</span><span class="n">WriteFile</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">bytes</span><span class="p">,</span> <span class="m">0644</span><span class="p">);</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+		<span class="n">log</span><span class="o">.</span><span class="n">Fatalln</span><span class="p">(</span><span class="s">"Error writing to file"</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="n">log</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"writing to file completed"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//Reading from file</span>
+<span class="k">func</span> <span class="n">ReadUserFromDisk</span><span class="p">(</span><span class="n">dest</span> <span class="n">proto</span><span class="o">.</span><span class="n">Message</span><span class="p">,</span> <span class="n">filename</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+
+	<span class="n">log</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"Reading file "</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+	<span class="n">bytes</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">ioutil</span><span class="o">.</span><span class="n">ReadFile</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+	<span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+		<span class="n">log</span><span class="o">.</span><span class="n">Fatalln</span><span class="p">(</span><span class="s">"Errot reading file"</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+		<span class="k">return</span>
+	<span class="p">}</span>
+	<span class="c">// var user basic.User</span>
+	<span class="k">if</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">proto</span><span class="o">.</span><span class="n">Unmarshal</span><span class="p">(</span><span class="n">bytes</span><span class="p">,</span> <span class="n">dest</span><span class="p">);</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+		<span class="n">log</span><span class="o">.</span><span class="n">Fatalln</span><span class="p">(</span><span class="s">"Error on unmarshalling user"</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="n">json</span><span class="p">,</span> <span class="n">_</span> <span class="o">:=</span> <span class="n">protojson</span><span class="o">.</span><span class="n">Marshal</span><span class="p">(</span><span class="n">dest</span><span class="p">)</span>
+	<span class="n">log</span><span class="o">.</span><span class="n">Print</span><span class="p">(</span><span class="kt">string</span><span class="p">(</span><span class="n">json</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div></div> <h2 id="readwrite-as-json">Read/Write as JSON</h2> <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c">//write as a json</span>
+<span class="k">func</span> <span class="n">WriteAsJson</span><span class="p">(</span><span class="n">msg</span> <span class="n">proto</span><span class="o">.</span><span class="n">Message</span><span class="p">,</span> <span class="n">filename</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">jsonBytes</span><span class="p">,</span> <span class="n">_</span> <span class="o">:=</span> <span class="n">protojson</span><span class="o">.</span><span class="n">Marshal</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+	<span class="k">if</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">ioutil</span><span class="o">.</span><span class="n">WriteFile</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">jsonBytes</span><span class="p">,</span> <span class="m">0644</span><span class="p">);</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+		<span class="n">log</span><span class="o">.</span><span class="n">Fatalln</span><span class="p">(</span><span class="s">"could not write to file "</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+		<span class="k">return</span>
+	<span class="p">}</span>
+	<span class="n">log</span><span class="o">.</span><span class="n">Print</span><span class="p">(</span><span class="s">"Writing file is completed."</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">//read as jsom and print</span>
+<span class="k">func</span> <span class="n">ReadAsJson</span><span class="p">(</span><span class="n">dest</span> <span class="n">proto</span><span class="o">.</span><span class="n">Message</span><span class="p">,</span> <span class="n">filename</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">bytes</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">ioutil</span><span class="o">.</span><span class="n">ReadFile</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+	<span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+		<span class="n">log</span><span class="o">.</span><span class="n">Fatalln</span><span class="p">(</span><span class="s">"Could not read file "</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+		<span class="k">return</span>
+	<span class="p">}</span>
+	<span class="k">if</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">protojson</span><span class="o">.</span><span class="n">Unmarshal</span><span class="p">(</span><span class="n">bytes</span><span class="p">,</span> <span class="n">dest</span><span class="p">);</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+		<span class="n">log</span><span class="o">.</span><span class="n">Fatalln</span><span class="p">(</span><span class="s">"Unmarshalling failed "</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+		<span class="k">return</span>
+	<span class="p">}</span>
+	<span class="n">json</span><span class="p">,</span> <span class="n">_</span> <span class="o">:=</span> <span class="n">protojson</span><span class="o">.</span><span class="n">Marshal</span><span class="p">(</span><span class="n">dest</span><span class="p">)</span>
+	<span class="n">log</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="kt">string</span><span class="p">(</span><span class="n">json</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div></div> <h2 id="schema-evolution">Schema Evolution</h2> <p>it is to gracefully adapt to changes in the structure of serialized data over time, enabling compatibility and interoperability between different versions of the schema.</p> <ul> <li>Compatibility: sender and receiver might have different protobuf message definition</li> <li>Forward &amp; Backward compatibility</li> </ul> <p><code class="language-plaintext highlighter-rouge">Rules</code></p> <ul> <li>Do not change field number <code class="language-plaintext highlighter-rouge">message A { string email = 1;}</code> but, renaming is allowed because the serialization and deserialization depends on number.</li> <li>Removing fields is okay but must not be used in future. The field number and field names are better reserved. <code class="language-plaintext highlighter-rouge">message A { reserved 3; reserved "phone_number"; reserved 3 to 5; reserved 'x', 'y';}</code></li> <li>During deletion, be aware of the fact old and new binary will have differences.</li> </ul> <div class="language-protobuf highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">message</span> <span class="nc">UserContent</span> <span class="p">{</span>
+  <span class="kt">uint32</span> <span class="na">user_content_id</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">[</span><span class="na">json_name</span> <span class="o">=</span> <span class="s">"user_content_id"</span><span class="p">];</span>
+  <span class="kt">string</span> <span class="na">slug</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">title</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">html_content</span> <span class="o">=</span> <span class="mi">4</span> <span class="p">[</span><span class="na">json_name</span> <span class="o">=</span> <span class="s">"html_content"</span><span class="p">];</span>
+  <span class="kt">uint32</span> <span class="na">author_id</span> <span class="o">=</span> <span class="mi">5</span> <span class="p">[</span><span class="na">json_name</span> <span class="o">=</span> <span class="s">"author_id"</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div></div> <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">//read and write content in v1 </span>
+<span class="n">user_content</span> <span class="o">:=</span> <span class="n">basic</span><span class="o">.</span><span class="n">UserContent</span><span class="p">{</span>
+<span class="n">UserContentId</span><span class="o">:</span> <span class="m">12</span><span class="p">,</span>
+    <span class="n">Slug</span><span class="o">:</span>          <span class="s">"slug12"</span><span class="p">,</span>
+    <span class="n">Title</span><span class="o">:</span>         <span class="s">"Test content"</span><span class="p">,</span>
+    <span class="n">HtmlContent</span><span class="o">:</span>   <span class="s">"&lt;h1&gt;Heading 1&lt;/h1&gt;"</span><span class="p">,</span>
+    <span class="n">AuthorId</span><span class="o">:</span>      <span class="m">32</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="k">var</span> <span class="n">dest</span> <span class="n">basic</span><span class="o">.</span><span class="n">UserContent</span>
+
+<span class="n">services</span><span class="o">.</span><span class="n">WriteUserToFile</span><span class="p">(</span><span class="o">&amp;</span><span class="n">user_content</span><span class="p">,</span> <span class="s">"user_content_v1.bin"</span><span class="p">)</span>
+<span class="n">services</span><span class="o">.</span><span class="n">ReadUserFromDisk</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dest</span><span class="p">,</span> <span class="s">"user_content_v1.bin"</span><span class="p">)</span>
+</code></pre></div></div> <p><code class="language-plaintext highlighter-rouge">update the message UserContent add new field category</code></p> <div class="language-protobuf highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">message</span> <span class="nc">UserContent</span> <span class="p">{</span>
+  <span class="kt">uint32</span> <span class="na">user_content_id</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">[</span><span class="na">json_name</span> <span class="o">=</span> <span class="s">"user_content_id"</span><span class="p">];</span>
+  <span class="kt">string</span> <span class="na">slug</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">title</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="na">html_content</span> <span class="o">=</span> <span class="mi">4</span> <span class="p">[</span><span class="na">json_name</span> <span class="o">=</span> <span class="s">"html_content"</span><span class="p">];</span>
+  <span class="kt">uint32</span> <span class="na">author_id</span> <span class="o">=</span> <span class="mi">5</span> <span class="p">[</span><span class="na">json_name</span> <span class="o">=</span> <span class="s">"author_id"</span><span class="p">];</span>
+  <span class="kt">string</span> <span class="na">category</span> <span class="o">=</span> <span class="mi">6</span> <span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div> <p>Forward compatibility</p> <ul> <li>Read <code class="language-plaintext highlighter-rouge">user_content_v1.bin</code> using UserContent version 2 (writer is older / forward compatibility)</li> <li>Write user_content_v2.bin using UserContent version 2</li> <li>Read user_content_v2.bin using UserContent version 2</li> </ul> <p><code class="language-plaintext highlighter-rouge">update the message UserContent to following</code></p> <div class="language-protobuf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">message</span> <span class="nc">UserContent</span> <span class="p">{</span>
+  <span class="n">reserved</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">;</span>
+  <span class="kt">uint32</span> <span class="na">user_content_id</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">[</span><span class="na">json_name</span> <span class="o">=</span> <span class="s">"user_content_id"</span><span class="p">];</span>
+  <span class="kt">string</span> <span class="na">slug</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="c1">// string title = 3;</span>
+  <span class="kt">string</span> <span class="na">html_content</span> <span class="o">=</span> <span class="mi">4</span> <span class="p">[</span><span class="na">json_name</span> <span class="o">=</span> <span class="s">"html_content"</span><span class="p">];</span>
+  <span class="c1">// uint32 author_id = 5 [json_name = "author_id"];</span>
+  <span class="kt">string</span> <span class="na">category</span> <span class="o">=</span> <span class="mi">6</span> <span class="p">;</span>
+  <span class="kt">string</span> <span class="na">sub_category</span> <span class="o">=</span> <span class="mi">7</span> <span class="p">[</span><span class="na">json_name</span><span class="o">=</span><span class="s">"sub_category"</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div></div> <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">//readung and writing in V3</span>
+<span class="n">user_content</span> <span class="o">:=</span> <span class="n">basic</span><span class="o">.</span><span class="n">UserContent</span><span class="p">{</span>
+    <span class="n">UserContentId</span><span class="o">:</span> <span class="m">12</span><span class="p">,</span>
+    <span class="n">Slug</span><span class="o">:</span>          <span class="s">"slug12"</span><span class="p">,</span>
+    <span class="n">HtmlContent</span><span class="o">:</span>   <span class="s">"&lt;h1&gt;Heading 1&lt;/h1&gt;"</span><span class="p">,</span>
+    <span class="n">Category</span><span class="o">:</span>      <span class="s">"S"</span><span class="p">,</span>
+    <span class="n">SubCategory</span><span class="o">:</span>   <span class="s">"AA"</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="k">var</span> <span class="n">dest</span> <span class="n">basic</span><span class="o">.</span><span class="n">UserContent</span>
+
+<span class="n">services</span><span class="o">.</span><span class="n">WriteUserToFile</span><span class="p">(</span><span class="o">&amp;</span><span class="n">user_content</span><span class="p">,</span> <span class="s">"user_content_v3.bin"</span><span class="p">)</span>
+<span class="n">services</span><span class="o">.</span><span class="n">ReadUserFromDisk</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dest</span><span class="p">,</span> <span class="s">"user_content_v3.bin"</span><span class="p">)</span>
+</code></pre></div></div> <h2 id="additional-types">Additional types</h2> <p>Download types from following links, and place them into your directory. <a href="https://protobuf.dev/reference/protobuf/google.protobuf/"> Documentation</a> <a href="https://github.com/googleapis/googleapis/tree/master/google/type">Source files</a></p> <p>Example: <code class="language-plaintext highlighter-rouge">pkg/ pb/ google/ types/ g.proto </code></p> <p>import</p> <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="s">"pkg/pb/google/type/date.proto"</span><span class="p">;</span>
+<span class="k">import</span> <span class="s">"pkg/pb/google/type/latlng.proto"</span><span class="p">;</span>
+
+<span class="n">message</span> <span class="n">User</span> <span class="p">{</span>
+    <span class="n">google</span><span class="o">.</span><span class="k">type</span><span class="o">.</span><span class="n">Date</span> <span class="n">birth_date</span>  <span class="o">=</span> <span class="m">24</span> <span class="p">[</span><span class="n">json_name</span> <span class="o">=</span> <span class="s">"birth_date"</span><span class="p">];</span>
+    <span class="n">google</span><span class="o">.</span><span class="k">type</span><span class="o">.</span><span class="n">LatLng</span> <span class="n">last_known_location</span> <span class="o">=</span> <span class="m">25</span> <span class="p">[</span><span class="n">json_name</span> <span class="o">=</span> <span class="s">"last_known_location"</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="c">//usage</span>
+<span class="n">user</span> <span class="o">:=</span> <span class="n">basic</span><span class="o">.</span><span class="n">User</span><span class="p">{</span>
+    <span class="n">Id</span><span class="o">:</span>                    <span class="m">11</span><span class="p">,</span>
+    <span class="n">Username</span><span class="o">:</span>              <span class="s">"LaLa"</span><span class="p">,</span>
+    <span class="n">SkillRating</span><span class="o">:</span>           <span class="n">skill_rating</span><span class="p">,</span>
+    <span class="n">LastLogin</span><span class="o">:</span>             <span class="n">timestamppb</span><span class="o">.</span><span class="n">Now</span><span class="p">(),</span>
+    <span class="n">BirthDate</span><span class="o">:</span>             <span class="o">&amp;</span><span class="n">date</span><span class="o">.</span><span class="n">Date</span><span class="p">{</span><span class="n">Year</span><span class="o">:</span> <span class="m">2000</span><span class="p">,</span> <span class="n">Month</span><span class="o">:</span> <span class="m">5</span><span class="p">,</span> <span class="n">Day</span><span class="o">:</span> <span class="m">27</span><span class="p">},</span>
+    <span class="n">LastKnownLocation</span><span class="o">:</span> <span class="o">&amp;</span><span class="n">latlng</span><span class="o">.</span><span class="n">LatLng</span><span class="p">{</span>
+        <span class="n">Latitude</span><span class="o">:</span>  <span class="o">-</span><span class="m">6.29847717</span><span class="p">,</span>
+        <span class="n">Longitude</span><span class="o">:</span> <span class="m">106.8290577</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+</code></pre></div></div> <h2 id="validate"><a href="https://github.com/bufbuild/protoc-gen-validate">Validate</a></h2> <p>Comming soon !!</p>]]></content><author><name></name></author><category term="software-engineering"/><category term="swe"/><summary type="html"><![CDATA[A guide on Protobuf]]></summary></entry><entry><title type="html">Go</title><link href="https://pvsnp9.github.io/blog/2023/go-cheatsheet/" rel="alternate" type="text/html" title="Go"/><published>2023-12-13T00:00:00+00:00</published><updated>2023-12-13T00:00:00+00:00</updated><id>https://pvsnp9.github.io/blog/2023/go-cheatsheet</id><content type="html" xml:base="https://pvsnp9.github.io/blog/2023/go-cheatsheet/"><![CDATA[<p>Go, also known as Golang, is a programming language developed by Google with a focus on simplicity, efficiency, and concurrency. Its clean syntax and static typing contribute to code readability and early error detection. Go promotes concurrent programming through lightweight threads called goroutines and channels for communication between them. The language features automatic garbage collection, reducing the burden on developers for memory management. Go’s standard library is robust, covering a wide range of tasks, and the language is cross-platform, allowing for seamless deployment across different operating systems. With a compiled nature, Go produces a single binary executable, simplifying distribution.</p> <h2 id="basics">Basics</h2> <p>create a simple program and run.</p> <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">main</span>
 
 <span class="k">import</span> <span class="s">"fmt"</span>
 
@@ -409,4 +816,4 @@ required methods*/</span>
 <span class="p">}</span>
 <span class="c">// 1 2 0</span>
 
-</code></pre></div></div> <h2 id="resources">Resources</h2> <ul> <li><a href="https://awesome-go.com/">Awesome Go </a></li> <li><a href="https://go.dev/doc/effective_go">Effective in Go</a></li> <li><a href="https://gobyexample.com/"> Go by Example </a></li> <li><a href="https://go.dev/wiki/"> Go WiKi </a></li> </ul>]]></content><author><name></name></author><category term="software-engineering"/><category term="swe"/><summary type="html"><![CDATA[A cheat sheet for Golang]]></summary></entry><entry><title type="html">Displaying External Posts on Your al-folio Blog</title><link href="https://pvsnp9.github.io/blog/2022/displaying-external-posts-on-your-al-folio-blog/" rel="alternate" type="text/html" title="Displaying External Posts on Your al-folio Blog"/><published>2022-04-23T23:20:09+00:00</published><updated>2022-04-23T23:20:09+00:00</updated><id>https://pvsnp9.github.io/blog/2022/displaying-external-posts-on-your-al-folio-blog</id><content type="html" xml:base="https://pvsnp9.github.io/blog/2022/displaying-external-posts-on-your-al-folio-blog/"><![CDATA[]]></content><author><name></name></author></entry></feed>
+</code></pre></div></div> <h2 id="resources">Resources</h2> <ul> <li><a href="https://awesome-go.com/">Awesome Go </a></li> <li><a href="https://go.dev/doc/effective_go">Effective in Go</a></li> <li><a href="https://gobyexample.com/"> Go by Example </a></li> <li><a href="https://go.dev/wiki/"> Go WiKi </a></li> </ul>]]></content><author><name></name></author><category term="software-engineering"/><category term="swe"/><summary type="html"><![CDATA[A cheat sheet for Golang]]></summary></entry></feed>
