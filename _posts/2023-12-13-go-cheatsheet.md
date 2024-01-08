@@ -6,7 +6,7 @@ description: A cheat sheet for Golang
 tags: swe 
 categories: software-engineering
 giscus_comments: false
-featured: true
+featured: false
 related_posts: false
 toc:
   sidebar: left
