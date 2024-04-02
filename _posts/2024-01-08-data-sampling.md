@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Data and Sampling 
-date: 2023-01-08
+date: 2024-01-08
 description: Data and Sampling from a book Practical Statistics for Data Scientists 
 tags: stattistics data-science
 categories: data-science

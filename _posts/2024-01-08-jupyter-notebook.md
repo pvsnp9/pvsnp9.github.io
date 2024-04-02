@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Exploratory Data Analysis 
-date: 2023-01-08
+date: 2024-01-08
 description: Exploring Basics of EDA from a book Practical Statistics for Data Scientists 
 tags: stattistics data-science
 categories: data-science
