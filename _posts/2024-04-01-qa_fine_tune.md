@@ -1,6 +1,6 @@
 ---
 layout: post
-title: QnA with Fine-Tuned BERT
+title: QnA with BERT
 date: 2024-04-01
 description: Transformer for Natural Language Processing. Learn How to Fine-Tune BERT models for QnA and unserstand their working.
 tags: QnA BERT NLP

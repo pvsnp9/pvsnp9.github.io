@@ -1,8 +1,8 @@
 ---
 layout: post
-title: BERT Basics
+title: BERT Basics and Fine Tunning
 date: 2024-04-01
-description: Transformer for Natural Language Processing. Learn How to use pretrained BERT models and decipher their working.
+description: Transformer for Natural Language Processing. Learn How to use pretrained BERT models, fine-tune them and decipher their working.
 tags: Transformer BERT NLP
 categories: Transformer
 featured: true
