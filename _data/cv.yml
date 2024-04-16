@@ -4,14 +4,20 @@
     - name: Full Name
       value: Tsuyog Basnet
     - name: Languages
-      value: English, Nepali, Hindi, Japanese (Elementary)
+      value: Nepali, English, Hindi, Japanese (Elementary)
 
 - title: Education
   type: time_table
   contents:
+    - title: Msc. Mathematics and Data Science
+      institution: University of Regina
+      year: 2024
+      description:
+        - Computational Mathematics 
+
     - title: Msc. Computer Science 
       institution: University of Regina
-      year: 2023
+      year: 2022
       description:
         - Machine Learninng Researcher @ Data Science Laboratory 
 
@@ -59,12 +65,12 @@
       - Designed and developed Travis CI/CD in AWS elastic beanstalk, dockerhub.
       - Performed System analysis and design [distributed systems]
 
-- title: Open Source Projects
-  type: time_table
-  contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+# - title: Open Source Projects
+#   type: time_table
+#   contents:
+#     - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
+#       year: 2015-now
+#       description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
 
 - title: Honors and Awards
   type: time_table
@@ -84,9 +90,8 @@
     - title: Neuroscience 
       items:
         - Neuroplasticity
-        - Correlation/Interaction between real life and nocturnal dreams.
 
 - title: Other Interests
   type: list
   contents:
-    - Any Sports. Special air-adventures.
+    - Any Sports. Specialy Soccer, Aerial Sports
