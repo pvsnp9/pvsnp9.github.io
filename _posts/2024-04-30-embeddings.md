@@ -1,7 +1,7 @@
 ---
 layout: distill
 title: Embedding & Toeknization
-description: Understanding embedding in toeknization in natural language processing. An implementation of Byte Pair Encoding.
+description: Understanding embedding and toeknization in natural language processing. An implementation of Byte Pair Encoding.
 tags: Embedding
 giscus_comments: false
 date: 2024-05-03
