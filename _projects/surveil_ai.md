@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Surveilai
-description: Advanced Semantic Search for Surveillance Footage
+description: An overview - Advanced Semantic Search for Surveillance Footage
 img: assets/img/surveliance.png
 importance: 2
 category: AI
