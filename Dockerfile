@@ -10,8 +10,26 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends \
     build-essential \
     zlib1g-dev \
     jupyter-nbconvert \
-    inotify-tools procps && \
+    inotify-tools \
+    procps \
+    libv8-dev \
+    python3 \
+    python3-dev \
+    libffi-dev && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
+
+
+# RUN apt-get update -y && apt-get install -y --no-install-recommends \
+#     locales \
+#     imagemagick \
+#     ruby-full \
+#     build-essential \
+#     zlib1g-dev \
+#     jupyter-nbconvert \
+#     inotify-tools \
+#     procps \
+#     libv8-dev && \
+#     apt-get clean && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
 
 RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
