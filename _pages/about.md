@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: Machine Learning Engineer | Data Scientist 
+subtitle: Researcher | Machine Learning Engineer 
 
 profile:
   align: right
@@ -19,11 +19,18 @@ social: true  # includes social icons at the bottom of the page
 
 
 
+Hi, I’m **Tsuyog Basnet** — a researcher, engineer, and lifelong learner passionate about the intersection of artificial intelligence, human potential, and creative innovation.
 
 
-My day spins around data, machine (deep) learning, system design, and software and operation engineering. My research involved clinical data to address challenges in clinical prediction using the recurrent (independent) network and more custom models. In addition, I am versed in machine learning - the lifecycle. I am fascinated by technology and its superpowers. I love to learn and experiment. I have skipped sleep with deep tech, philosophical, and neuroscience conversations. Let me know if you find me inquisitive.
+I am a doctoral student, my research is rooted in **multimodal machine learning**, **generative modeling**, and **large language models**. With a strong foundation in **computer science**, **Machine Learning**, and **neuroscience-inspired AI**, I strive to bridge the gap between technical complexity and real-world impact.
 
+Before my doctoral journey, I earned an **MSc in Computer Science** from the **University of Regina** , reflecting my belief that true intelligence — human or artificial — thrives when technology, health, and cognition intersect.
 
+Whether you’re a fellow researcher, a builder, or someone curious about how AI and personal development intertwine, you’ll find insights here designed to **challenge**, **inspire**, and **equip** you to create at the highest level.
+
+Thanks for being here. Let’s grow, build, and innovate — **unapologetically**.
+
+<!-- Pormp: *Based on my profile, generate an introduction for my blog.* -->
 
 <!-- 
 Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
